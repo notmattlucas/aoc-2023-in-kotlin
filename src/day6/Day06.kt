@@ -1,3 +1,7 @@
+package day6
+
+import println
+import readInput
 import kotlin.math.floor
 import kotlin.math.sqrt
 

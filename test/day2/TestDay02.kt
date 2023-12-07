@@ -1,3 +1,5 @@
+package day2
+
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -14,11 +16,14 @@ internal class TestDay02 {
     fun shouldParseRounds() {
         val input = listOf("Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red")
         val games = parse(input)
-        assertEquals(Game(4, listOf(
-            Round(mapOf(Color.GREEN to 1, Color.RED to 3, Color.BLUE to 6)),
-            Round(mapOf(Color.GREEN to 3, Color.RED to 6)),
-            Round(mapOf(Color.GREEN to 3, Color.RED to 14, Color.BLUE to 15)),
-        )), games[0])
+        assertEquals(
+            Game(
+                4, listOf(
+                    Round(mapOf(Color.GREEN to 1, Color.RED to 3, Color.BLUE to 6)),
+                    Round(mapOf(Color.GREEN to 3, Color.RED to 6)),
+                    Round(mapOf(Color.GREEN to 3, Color.RED to 14, Color.BLUE to 15)),
+                )
+            ), games[0])
     }
 
     @Test

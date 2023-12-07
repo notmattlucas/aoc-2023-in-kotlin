@@ -1,3 +1,5 @@
+package day4
+
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -11,9 +13,11 @@ class TestDay04 {
             "Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1"
         ))
         assertEquals(cards[0].following, listOf(
-            Card(listOf(13, 32, 20, 16, 61), listOf(61, 30, 68, 82, 17, 32, 24, 19),
-                listOf(Card(listOf( 1, 21, 53, 59, 44), listOf(69, 82, 63, 72, 16, 21, 14,  1), listOf()))),
-            Card(listOf( 1, 21, 53, 59, 44), listOf(69, 82, 63, 72, 16, 21, 14,  1), listOf())
+            Card(
+                listOf(13, 32, 20, 16, 61), listOf(61, 30, 68, 82, 17, 32, 24, 19),
+                listOf(Card(listOf(1, 21, 53, 59, 44), listOf(69, 82, 63, 72, 16, 21, 14, 1), listOf()))
+            ),
+            Card(listOf(1, 21, 53, 59, 44), listOf(69, 82, 63, 72, 16, 21, 14, 1), listOf())
         ))
     }
 
@@ -24,9 +28,11 @@ class TestDay04 {
             "Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19"
         ))
         assertEquals(cards, listOf(
-            Card(listOf(41, 48, 83, 86, 17), listOf(83, 86,  6, 31, 17,  9, 48, 53), listOf(
-                Card(listOf(13, 32, 20, 16, 61), listOf(61, 30, 68, 82, 17, 32, 24, 19), listOf())
-            )),
+            Card(
+                listOf(41, 48, 83, 86, 17), listOf(83, 86, 6, 31, 17, 9, 48, 53), listOf(
+                    Card(listOf(13, 32, 20, 16, 61), listOf(61, 30, 68, 82, 17, 32, 24, 19), listOf())
+                )
+            ),
             Card(listOf(13, 32, 20, 16, 61), listOf(61, 30, 68, 82, 17, 32, 24, 19), listOf())
         ))
     }

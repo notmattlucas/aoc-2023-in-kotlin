@@ -1,3 +1,7 @@
+package day2
+
+import println
+import readInput
 import java.util.*
 
 fun main() {

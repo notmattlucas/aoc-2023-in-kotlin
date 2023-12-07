@@ -1,3 +1,7 @@
+package day5
+
+import println
+import readInput
 import kotlin.math.max
 import kotlin.math.min
 
@@ -55,7 +59,7 @@ class Almanac(val seeds:List<Long>, val sections:Map<String, Section>) {
                         acc.dropLast(1) + listOf(acc.last() + listOf(line))
                     }
                 }
-                .map(::parseSection).associateBy { it.name }
+                .map(Companion::parseSection).associateBy { it.name }
         }
 
         private fun parseSection(group: List<String>): Section {

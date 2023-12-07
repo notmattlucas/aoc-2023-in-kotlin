@@ -1,13 +1,18 @@
+package day6
+
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import readInput
 
 class TestDay06 {
 
     @Test
     fun `should parse races`() {
-        val races = Race.parse(listOf(
-            "Time:      7  15   30",
-            "Distance:  9  40  200")
+        val races = Race.parse(
+            listOf(
+                "Time:      7  15   30",
+                "Distance:  9  40  200"
+            )
         )
         assertEquals(listOf(
             Race(7, 9),
