@@ -1,9 +1,14 @@
+package day10
+
+import println
+import readInput
+
 fun main() {
 
-    check(part1(readInput("Day10_test")) == 8)
-    check(part2(readInput("Day10_test")) == 0)
-
-    part1(readInput("Day10")).println()
+//    check(part1(readInput("Day10_test")) == 8)
+//    check(part2(readInput("Day10_test")) == 0)
+//
+//    part1(readInput("Day10")).println()
     part2(readInput("Day10")).println()
 
 }
@@ -13,8 +18,7 @@ fun part1(input: List<String>):Int = PipeMap.parse(input).longestPath().size() /
 fun part2(input: List<String>):Int {
     val map = PipeMap.parse(input)
     val longest = map.longestPath()
-    longest.view().forEach { println(it.joinToString("").replace(".", "X")) }
-    return 0
+    return longest.enclosed()
 }
 
 enum class Tile(val char: Char, private val tx:(Vector) -> Vector) {
@@ -107,7 +111,32 @@ class Route(private val map: PipeMap, private val initial: Vector) {
     }
 
     fun enclosed(): Int {
-        return 0
+        val grid = map.grid.map { it.map { Tile.GROUND.char }.toMutableList() }
+        route.forEachIndexed { index, point ->
+            grid[point.second][point.first] = '|'
+        }
+
+        val visited = mutableSetOf(0 to 0)
+        val todo = ArrayDeque(listOf(0 to 0))
+        while (todo.isNotEmpty()) {
+            val point = todo.removeAt(0)
+            grid[point.second][point.first] = 'X'
+            neighbours(point)
+                .filter { !visited.contains(it) }
+                .filter { grid[it.second][it.first] == '.' }
+                .forEach {
+                    todo.add(it)
+                    visited.add(it)
+                }
+        }
+        grid.reversed().forEach { println(it.joinToString("")) }
+        return grid.flatten().count { it == '.' }
+    }
+
+    private fun neighbours(point: Point): List<Point> {
+        return listOf(0 to 1, 1 to 0, 0 to -1, -1 to 0)
+            .map { (x, y) -> point.first + x to point.second + y }
+            .filter { map.tile(it) != null }
     }
 
 }

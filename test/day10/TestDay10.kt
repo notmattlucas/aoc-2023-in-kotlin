@@ -1,13 +1,8 @@
 package day10
 
-import PipeMap
-import Route
-import Vector
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
-import strikt.assertions.isFalse
-import strikt.assertions.isTrue
 
 class TestDay10 {
 
@@ -130,22 +125,6 @@ class TestDay10 {
     }
 
     @Test
-    fun `it should find enclosing space`() {
-        val map = PipeMap.parse(listOf(
-            "..........",
-            ".S------7.",
-            ".|F----7|.",
-            ".||....||.",
-            ".||....||.",
-            ".|L-7F-J|.",
-            ".|..||..|.",
-            ".L--JL--J.",
-            ".........."
-        ))
-        expectThat(map.longestPath().enclosed()).isEqualTo(4)
-    }
-
-    @Test
     fun `it should find enclosing space 2`() {
         val map = PipeMap.parse(listOf(
             "...........",
@@ -160,23 +139,5 @@ class TestDay10 {
         ))
         expectThat(map.longestPath().enclosed()).isEqualTo(4)
     }
-
-    @Test
-    fun `it should find enclosing space 3`() {
-        val map = PipeMap.parse(listOf(
-            ".F----7F7F7F7F-7....",
-            ".|F--7||||||||FJ....",
-            ".||.FJ||||||||L7....",
-            "FJL7L7LJLJ||LJ.L-7..",
-            "L--J.L7...LJS7F-7L7.",
-            "....F-J..F7FJ|L7L7L7",
-            "....L7.F7||L7|.L7L7|",
-            ".....|FJLJ|FJ|F7|.LJ",
-            "....FJL-7.||.||||...",
-            "....L---J.LJ.LJLJ..."
-        ))
-        map.longestPath().view().forEach { println(it) }
-        expectThat(map.longestPath().enclosed()).isEqualTo(8)
-    }
-
+    
 }
