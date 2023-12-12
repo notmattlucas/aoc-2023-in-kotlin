@@ -20,9 +20,37 @@ class TestDay12 {
     }
 
     @Test
-    fun `it should search for 4 groups` () {
-        val search = Search.from(".??..??...?##. 1,1,3")
-        expectThat(search.search()).isEqualTo(listOf("#.#.###"))
+    fun `it should search groups` () {
+        expectThat(Search.from("???.### 1,1,3").search().size).isEqualTo(1)
+        expectThat(Search.from(".??..??...?##. 1,1,3").search().size).isEqualTo(4)
+        expectThat(Search.from("?#?#?#?#?#?#?#? 1,3,1,6").search().size).isEqualTo(1)
+        expectThat(Search.from("????.#...#... 4,1,1").search().size).isEqualTo(1)
+        expectThat(Search.from("????.######..#####. 1,6,5").search().size).isEqualTo(4)
+        println(Search.from("?###???????? 3,2,1").search())
+        expectThat(Search.from("?###???????? 3,2,1").search().size).isEqualTo(10)
+    }
+
+    @Test
+    fun `it should handle part1`() {
+        val input = listOf(
+            "???.### 1,1,3",
+            ".??..??...?##. 1,1,3",
+            "?#?#?#?#?#?#?#? 1,3,1,6",
+            "????.#...#... 4,1,1",
+            "????.######..#####. 1,6,5",
+            "?###???????? 3,2,1"
+        )
+        expectThat(part1(input)).isEqualTo(21)
+    }
+
+    @Test
+    fun `it should search folded groups` () {
+        expectThat(Search.fromFolded("???.### 1,1,3").search().size).isEqualTo(1)
+        expectThat(Search.fromFolded(".??..??...?##. 1,1,3").search().size).isEqualTo(16384)
+        expectThat(Search.fromFolded("?#?#?#?#?#?#?#? 1,3,1,6").search().size).isEqualTo(1)
+        expectThat(Search.fromFolded("????.#...#... 4,1,1").search().size).isEqualTo(16)
+        expectThat(Search.fromFolded("????.######..#####. 1,6,5").search().size).isEqualTo(2500)
+        expectThat(Search.fromFolded("?###???????? 3,2,1").search().size).isEqualTo(506250)
     }
 
 }
