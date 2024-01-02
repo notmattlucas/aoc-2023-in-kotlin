@@ -134,7 +134,7 @@ class Rule(val name:String, private val initial:Condition) {
                     })
                     ">" -> Pair({ input:Map<String, Int> -> (input[name] ?: Int.MIN_VALUE) > value.toInt() }, { input:Bound ->
                         val range = input[name]!!
-                        val sep = value.toInt()
+                          val sep = value.toInt()
                         val bound = input + (name to sep + 1.. range.last)
                         val alternate = input + (name to range.first .. sep)
                         Pair(bound, alternate)
